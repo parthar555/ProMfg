@@ -1,18 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import DashboardIndex from './Components/Dashboard/Index';
+import HomeScreen from './Components/Dashboard/HomeScreen';
+import Lines from './Components/Dashboard/Lines';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Header from './Components/Common/Header';
-import Cards from './Components/Dashboard/Cards';
 
-export default function App() {
-  const [count, setCount] = useState(0);
+const Stack = createNativeStackNavigator();
+
+const App = () => {
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Header />
-        <Cards />
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
+        
+      {/* <Stack.Screen
+        name="Lines"
+        component={Lines}
+        options={{ title: 'Lines' }}
+      />
+      <Stack.Screen name="HomeScreen" component={HomeScreen} /> */}
+      <Stack.Screen name="HomeScreen" component={DashboardIndex} />
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
