@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions, ScrollView, SafeAreaView, FlatList,
 import Header from '../Common/Header';
 import { useNavigation } from '@react-navigation/native';
 
-export default HomeScreen = () => {
+export default LineOptions = () => {
     const [selected, setSelected] = useState("");
     const navigation = useNavigation();
 
@@ -16,7 +16,7 @@ export default HomeScreen = () => {
         {
             id: '2',
             title: 'LAB',
-            list: [{ id: 1, title: 'Lab Dashboard' }, { id: 2, title: 'Test History' }, { id: 3, title: 'Seasoning' }, { id: 4, title: 'More...' }, { id: 5, title: 'Extra Item' }],
+            list: [{ id: 1, title: 'Lab Dashboard' }, { id: 2, title: 'Test History' }, { id: 3, title: 'Seasoning' }, { id: 4, title: 'Extra Item 1' }, { id: 5, title: 'Extra Item 2' }, { id: 6, title: 'Lab Dashboard' }, { id: 7, title: 'Test History' }, { id: 8, title: 'Seasoning' }, { id: 9, title: 'Extra Item 1' }, { id: 10, title: 'Extra Item 2' }],
         },
         {
             id: '3',
@@ -35,24 +35,23 @@ export default HomeScreen = () => {
                 {data.list.map((info) => (
                     <View style={styles.tileSubject}>
                         {
-                            info.id === 4 ?
+                            info.id === 3 ?
                                 <TouchableOpacity onPress={() =>
-                                    navigation.navigate('Lines', {
-                                        screenName: 'Lines',
+                                    navigation.navigate('MoreLines', {
+                                        screenName: 'MoreLines',
+                                        listData: data
                                     })
                                 }>
-                                    <View style={styles.tilesOption}>
-                                        <View style={styles.tileBtn}>
+                                       <View style={[styles.tileBtn,{width:100,  justifyContent:'center', alignItems:'center'}]}>
                                             <Text style={styles.tileBtnText}>{'More...'}</Text>
                                         </View>
-                                    </View>
                                 </TouchableOpacity>
                                 :
                                 info.id <= 3 ?
-                                    <View style={styles.tilesOption}>
-                                        <View style={styles.tileBtn}>
-                                            <Text style={styles.tileBtnText}>{info.title}</Text>
-                                        </View>
+                                    
+                                        <View style={[styles.tileBtn,{width:100,  justifyContent:'center', alignItems:'center'}]}>
+                                            <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tileBtnText]}>{info.title}</Text>
+                                    
 
                                     </View> : null
                         }
@@ -78,6 +77,7 @@ export default HomeScreen = () => {
             {/* <Header screenName={'cards'} ></Header> */}
             <View>
                 <FlatList
+                    key={'#'}
                     data={DATA}
                     renderItem={({ item }) => <Item data={item} />}
                     keyExtractor={(item) => item.id}
@@ -104,12 +104,12 @@ const styles = StyleSheet.create({
     },
     tiles: {
         borderWidth: 0.5,
-        borderColor: 'black',
+        borderColor: '#AFCFF3',
         height: 95,
         marginTop: 20,
         borderRadius: 10,
         backgroundColor: '#F6F9FE',
-        padding: 20
+        padding: 20,
     },
     tileHeader: {
         fontSize: 15,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     },
     tileBtnText: {
         fontSize: 10,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     item: {
         backgroundColor: '#f9c2ff',
