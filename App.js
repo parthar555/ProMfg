@@ -19,6 +19,7 @@ const App = () => {
       <Stack.Screen name="MoreLines" component={MoreLines} />
       </Stack.Navigator>
     </NavigationContainer>
+    
   );
 };
 
