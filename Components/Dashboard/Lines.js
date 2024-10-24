@@ -20,7 +20,7 @@ export default Lines = ({ navigation }) => {
         return (
 
             <View style={styles.item}>
-                <Text style={{ fontSize: 18 }}>{title}</Text>
+                <Text style={{ fontSize: 20 }}>{title}</Text>
             </View>
         );
     }
