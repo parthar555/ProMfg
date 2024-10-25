@@ -11,17 +11,40 @@ export default LineOptions = () => {
         {
             id: '1',
             title: 'PAE',
-            list: [{ id: 1, title: 'PAE Dashboard' }, { id: 2, title: '+PAE FCP' }],
+            list: [
+                { id: 1, title: 'PAE Dashboard' },
+                { id: 2, title: '+PAE FCP' }
+            ],
         },
         {
             id: '2',
             title: 'LAB',
-            list: [{ id: 1, title: 'Lab Dashboard' }, { id: 2, title: 'Test History' }, { id: 3, title: 'Seasoning' }, { id: 4, title: 'Extra Item 1' }, { id: 5, title: 'Extra Item 2' }, { id: 6, title: 'Lab Dashboard' }, { id: 7, title: 'Test History' }, { id: 8, title: 'Seasoning' }, { id: 9, title: 'Extra Item 1' }, { id: 10, title: 'Extra Item 2' }],
+            list: [
+                { id: 1, title: 'Lab Dashboard' },
+                { id: 2, title: 'Test History' },
+                {id: 3, title: 'Seasoning', subItems: [
+                    {
+                        id: 1, title: 'Seasoning1'
+                    },
+                    {
+                        id: 2, title: 'Seasoning2'
+                    }
+                ]},
+                { id: 4, title: 'Extra Item 1' },
+                { id: 5, title: 'Extra Item 2' },
+                { id: 6, title: 'Lab Dashboard' },
+                { id: 7, title: 'Test History' }, { id: 8, title: 'Seasoning' },
+                { id: 9, title: 'Extra Item 1' },
+                { id: 10, title: 'Extra Item 2' }
+            ],
         },
         {
             id: '3',
             title: 'Process Control',
-            list: [{ id: 1, title: 'Test History' }, { id: 2, title: '    +All    ' }],
+            list: [
+                {id: 1, title: 'Test History' },
+                { id: 2, title: '    +All    ' }
+            ],
         },
     ];
     

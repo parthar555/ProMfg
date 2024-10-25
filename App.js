@@ -1,10 +1,7 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
 import DashboardIndex from './Components/Dashboard/Index';
-import LineOptions from './Components/Dashboard/LineOptions';
 import MoreLines from './Components/Dashboard/MoreLines';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Header from './Components/Common/Header';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +16,7 @@ const App = () => {
       <Stack.Screen name="MoreLines" component={MoreLines} />
       </Stack.Navigator>
     </NavigationContainer>
-    
+
   );
 };
 
