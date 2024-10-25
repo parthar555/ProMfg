@@ -22,16 +22,47 @@ export default LineOptions = () => {
             list: [
                 { id: 1, title: 'Lab Dashboard' },
                 { id: 2, title: 'Test History' },
-                {id: 3, title: 'Seasoning', subItems: [
-                    {
-                        id: 1, title: 'Seasoning1'
-                    },
-                    {
-                        id: 2, title: 'Seasoning2'
-                    }
-                ]},
+                {
+                    id: 3, title: 'Seasoning', subItems: [
+                        {
+                            id: 1, title: 'Seasoning1'
+                        },
+                        {
+                            id: 2, title: 'Seasoning2'
+                        },
+                        {
+                            id: 3, title: 'Seasoning3'
+                        },
+                        {
+                            id: 4, title: 'Seasoning4'
+                        },
+                        {
+                            id: 5, title: 'Seasoning5'
+                        }, {
+                            id: 6, title: 'Seasoning6'
+                        },
+                        {
+                            id: 7, title: 'Seasoning7'
+                        },
+                        {
+                            id: 8, title: 'Seasoning8'
+                        },
+                        {
+                            id: 9, title: 'Seasoning9'
+                        }
+                    ]
+                },
                 { id: 4, title: 'Extra Item 1' },
-                { id: 5, title: 'Extra Item 2' },
+                {
+                    id: 5, title: 'Extra Item 2', subItems: [
+                        {
+                            id: 1, title: 'Sub Extra Item 1'
+                        },
+                        {
+                            id: 2, title: 'Sub Extra Item 2'
+                        }
+                    ]
+                },
                 { id: 6, title: 'Lab Dashboard' },
                 { id: 7, title: 'Test History' }, { id: 8, title: 'Seasoning' },
                 { id: 9, title: 'Extra Item 1' },
@@ -42,12 +73,11 @@ export default LineOptions = () => {
             id: '3',
             title: 'Process Control',
             list: [
-                {id: 1, title: 'Test History' },
+                { id: 1, title: 'Test History' },
                 { id: 2, title: '    +All    ' }
             ],
         },
     ];
-    
 
     const Item = ({ data }) => (
         <View style={styles.tiles}>
@@ -65,16 +95,16 @@ export default LineOptions = () => {
                                         listData: data
                                     })
                                 }>
-                                       <View style={[styles.tileBtn,{width:100,  justifyContent:'center', alignItems:'center'}]}>
-                                            <Text style={styles.tileBtnText}>{'More...'}</Text>
-                                        </View>
+                                    <View style={[styles.tileBtn, { width: 100, justifyContent: 'center', alignItems: 'center' }]}>
+                                        <Text style={styles.tileBtnText}>{'More...'}</Text>
+                                    </View>
                                 </TouchableOpacity>
                                 :
                                 info.id <= 3 ?
-                                    
-                                        <View style={[styles.tileBtn,{width:100,  justifyContent:'center', alignItems:'center'}]}>
-                                            <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tileBtnText]}>{info.title}</Text>
-                                    
+
+                                    <View style={[styles.tileBtn, { width: 100, justifyContent: 'center', alignItems: 'center' }]}>
+                                        <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tileBtnText]}>{info.title}</Text>
+
 
                                     </View> : null
                         }
@@ -160,21 +190,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#f9c2ff',
         padding: 20,
         marginVertical: 8,
-      },
-      header: {
+    },
+    header: {
         fontSize: 32,
         backgroundColor: '#fff',
-      },
-      title: {
+    },
+    title: {
         fontSize: 24,
-      },toggle: {
+    }, toggle: {
         width: 100,
         height: 30,
         backgroundColor: "blue",
         justifyContent: "center",
         alignItems: "center"
-      },
-      toggleText: {
+    },
+    toggleText: {
         color: "#fff"
-      }
+    }
 });
