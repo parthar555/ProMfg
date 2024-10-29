@@ -27,30 +27,6 @@ export default MoreLines = ({ route }) => {
     else setActiveItem(id);
   }
 
-  const pickPanelToDisplay = (item) => {
-    return (
-      <View style={styles.container} key={item.id}>
-        <TouchableWithoutFeedback onPress={() => toggleAccordion(item.id)}>
-          <View style={styles.header}>
-            <Text style={styles.title}>{item.title}</Text>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            {item.subItems && item.subItems.map((info) => (
-              <View style={styles.tileSubject}>
-                {
-                  <View style={[styles.tileBtn, { width: 100, justifyContent: 'center', alignItems: 'center' }]}>
-                    <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tileBtnText]}>{info.title}</Text>
-                  </View>
-                }
-              </View>
-            ))
-            }
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-    )
-  }
-
   const renderItem = ({ item }) => (
     <TouchableOpacity key={item.id}>
       <View style={styles.tileSubject}>
@@ -175,7 +151,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 15,
     marginRight: 7,
-    width: 100,
+    width: 110,
     alignItems: 'center'
   },
   tileBtnText: {

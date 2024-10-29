@@ -7,7 +7,6 @@ import {
   Platform,
   LayoutAnimation,
   SafeAreaView,
-  ScrollView,
   FlatList,
   Image
 } from 'react-native';
@@ -15,18 +14,22 @@ import React, { useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import Header from '../Common/Header';
 import LineOptions from './LineOptions';
+import { MoreOptionsData } from "../../utils/Constants";
 
 const DATA = [
-  { key: '1', value: 'FCP1' },
-  { key: '2', value: 'FCC1' },
-  { key: '3', value: 'PC1' },
+  { key: '0', value: 'FCP1' },
+  { key: '1', value: 'FCC1' },
+  { key: '2', value: 'PC1' },
+  { key: '3', value: 'PC2' },
   { key: '4', value: 'TC1' },
   { key: '5', value: 'TC2' },
+  { key: '6', value: 'TC3' },
  
 ]
 
 const DashboardIndex = ({ navigation }) => {
-  const [activeItem, setActiveItem] = useState('')
+  const [activeItem, setActiveItem] = useState('');
+  const [moreOptions, setMoreOptions] = useState([]);
 
   if (
     Platform.OS === 'android' &&
@@ -35,20 +38,25 @@ const DashboardIndex = ({ navigation }) => {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
 
-  const toggleAccordion = (id) => {
+  const toggleAccordion = (item) => {
+    const id = item.key;
     LayoutAnimation.configureNext({
       duration: 300,
       create: { type: 'easeIn', property: 'opacity' },
       update: { type: 'linear', springDamping: 0.3, duration: 250 },
     });
-    if (id === activeItem) setActiveItem('')
-    else setActiveItem(id);
+    if (id === activeItem) {
+      setActiveItem('');
+    } else {
+      setActiveItem(id);
+      setMoreOptions(MoreOptionsData[id][item.value])
+    }
   }
 
   const pickPanelToDisplay = (item) => {
     return (
       <View style={styles.container} key={item.key}>
-        <TouchableWithoutFeedback onPress={() => toggleAccordion(item.key)}>
+        <TouchableWithoutFeedback onPress={() => toggleAccordion(item)}>
           <View style={styles.header}>
             <Text style={styles.title}>{item.value}</Text>
             <Image
@@ -61,7 +69,7 @@ const DashboardIndex = ({ navigation }) => {
         </TouchableWithoutFeedback>
 
         {activeItem && activeItem === item.key &&
-          <LineOptions></LineOptions>
+          <LineOptions moreOptions={moreOptions}></LineOptions>
         }
       </View>
     )

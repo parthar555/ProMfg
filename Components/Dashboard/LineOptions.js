@@ -1,91 +1,18 @@
-import { useState } from "react";
-import { View, Text, StyleSheet, Dimensions, ScrollView, SafeAreaView, FlatList, TouchableOpacity, SectionList } from "react-native";
-import Header from '../Common/Header';
+import { View, Text, StyleSheet, Dimensions, SafeAreaView, FlatList, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
-export default LineOptions = () => {
-    const [selected, setSelected] = useState("");
+export default LineOptions = (props) => {
+    const {moreOptions} = props;
     const navigation = useNavigation();
-
-    const DATA = [
-        {
-            id: '1',
-            title: 'PAE',
-            list: [
-                { id: 1, title: 'PAE Dashboard' },
-                { id: 2, title: '+PAE FCP' }
-            ],
-        },
-        {
-            id: '2',
-            title: 'LAB',
-            list: [
-                { id: 1, title: 'Lab Dashboard' },
-                { id: 2, title: 'Test History' },
-                {
-                    id: 3, title: 'Seasoning', subItems: [
-                        {
-                            id: 1, title: 'Seasoning1'
-                        },
-                        {
-                            id: 2, title: 'Seasoning2'
-                        },
-                        {
-                            id: 3, title: 'Seasoning3'
-                        },
-                        {
-                            id: 4, title: 'Seasoning4'
-                        },
-                        {
-                            id: 5, title: 'Seasoning5'
-                        }, {
-                            id: 6, title: 'Seasoning6'
-                        },
-                        {
-                            id: 7, title: 'Seasoning7'
-                        },
-                        {
-                            id: 8, title: 'Seasoning8'
-                        },
-                        {
-                            id: 9, title: 'Seasoning9'
-                        }
-                    ]
-                },
-                { id: 4, title: 'Extra Item 1' },
-                {
-                    id: 5, title: 'Extra Item 2', subItems: [
-                        {
-                            id: 1, title: 'Sub Extra Item 1'
-                        },
-                        {
-                            id: 2, title: 'Sub Extra Item 2'
-                        }
-                    ]
-                },
-                { id: 6, title: 'Lab Dashboard' },
-                { id: 7, title: 'Test History' }, { id: 8, title: 'Seasoning' },
-                { id: 9, title: 'Extra Item 1' },
-                { id: 10, title: 'Extra Item 2' }
-            ],
-        },
-        {
-            id: '3',
-            title: 'Process Control',
-            list: [
-                { id: 1, title: 'Test History' },
-                { id: 2, title: '    +All    ' }
-            ],
-        },
-    ];
-
+    const DATA = moreOptions;
     const Item = ({ data }) => (
-        <View style={styles.tiles}>
+        <View style={[styles.tiles, data.list.length === 0 ? styles.shortTiles : '']}>
             <View style={styles.tileContent}>
                 <Text style={styles.tileHeader}>{data.title}</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
-                {data.list.map((info) => (
+                {
+                data.list.map((info) => (
                     <View style={styles.tileSubject}>
                         {
                             info.id === 3 ?
@@ -104,14 +31,9 @@ export default LineOptions = () => {
 
                                     <View style={[styles.tileBtn, { width: 100, justifyContent: 'center', alignItems: 'center' }]}>
                                         <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tileBtnText]}>{info.title}</Text>
-
-
                                     </View> : null
                         }
                     </View>
-
-
-
                 ))
                 }
             </View>
@@ -158,11 +80,14 @@ const styles = StyleSheet.create({
     tiles: {
         borderWidth: 0.5,
         borderColor: '#AFCFF3',
-        height: 95,
+        height: 90,
         marginTop: 20,
         borderRadius: 10,
         backgroundColor: '#F6F9FE',
         padding: 20,
+    },
+    shortTiles: {
+        height: 60
     },
     tileHeader: {
         fontSize: 15,
