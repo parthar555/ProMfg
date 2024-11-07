@@ -13,11 +13,13 @@ export default Header = ({ screenName }) => {
                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: 10 }}>
 
                         <TouchableOpacity onPress={() =>
-                            screenName == 'cards' ? navigation.goBack() : null
+                            navigation.navigate('DashboardIndex', {
+                                screenName: 'DashboardIndex'
+                            })
                         }>
                             <Image
                                 style={styles.logo}
-                                source={screenName == 'cards' ? require('../../assets/back-icon.png') : require('../../assets/mfg-image.png')}
+                                source={screenName ? require('../../assets/back-icon.png') : require('../../assets/mfg-image.png')}
                             />
                         </TouchableOpacity>
 
@@ -28,7 +30,9 @@ export default Header = ({ screenName }) => {
                             alignItems: 'center',
                             alignContent: 'flex-end',
                         }}>
-                        <TouchableOpacity >
+                        <TouchableOpacity onPress={() =>
+                            navigation.goBack()
+                        }>
                             <Image
                                 style={styles.logo}
                                 source={require('../../assets/notification-icon-1.jpg')}

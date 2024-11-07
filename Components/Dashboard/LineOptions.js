@@ -28,10 +28,16 @@ export default LineOptions = (props) => {
                                 </TouchableOpacity>
                                 :
                                 info.id <= 3 ?
-
-                                    <View style={[styles.tileBtn, { width: 100, justifyContent: 'center', alignItems: 'center' }]}>
-                                        <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tileBtnText]}>{info.title}</Text>
-                                    </View> : null
+                                    <TouchableOpacity onPress={() =>
+                                        navigation.navigate('ItemsDashboard', {
+                                            screenName: 'ItemsDashboard',
+                                            listData: data
+                                        })
+                                    }>
+                                        <View style={[styles.tileBtn, { width: 100, justifyContent: 'center', alignItems: 'center' }]}>
+                                            <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tileBtnText]}>{info.title}</Text>
+                                        </View>
+                                    </TouchableOpacity> : null
                         }
                     </View>
                 ))
