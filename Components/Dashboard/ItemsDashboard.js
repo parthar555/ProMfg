@@ -1,14 +1,18 @@
 
 import Header from "../Common/Header"
-import { SafeAreaView, View, Text, ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView, View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { DataTable } from 'react-native-paper';
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDashboardItems } from "../../slices/dashboardSlices";
+import Filter from "../Filter/Filter";
+import MyIcon from '../../assets/svgs/filterIcon.svg';
+
 
 export default ItemsDashboard = ({ routes }) => {
     const [page, setPage] = useState(0)
     const [numberOfItemsPerPageList] = useState([10, 20, 50]);
+    const [displayFiters, setDisplayFilters] = useState(false)
     const [itemsPerPage, onItemsPerPageChange] = useState(
       numberOfItemsPerPageList[0]
     );
@@ -19,6 +23,10 @@ export default ItemsDashboard = ({ routes }) => {
       dispatch(fetchDashboardItems())
     }, [])
 
+    const oprnFilterPanel = () => {
+      return (<Filter />)
+    }
+
 
     const from = page * itemsPerPage;
     const to = Math.min((page + 1) * itemsPerPage, dashboardState.dashboardItems.length);
@@ -27,6 +35,13 @@ export default ItemsDashboard = ({ routes }) => {
         <SafeAreaView style={{ flex: 1 }}>
           <Header screenName={'ItemsDashboard'}></Header>
           <View style={styles.container}>
+          <View style={styles.filter} >
+          <TouchableOpacity onPress={() =>setDisplayFilters(!displayFiters)}>
+            <MyIcon style={styles.back} />
+          </TouchableOpacity>
+          
+          </View>
+          {displayFiters && <View>{oprnFilterPanel()}</View>}
           <ScrollView>
             <DataTable>
               <DataTable.Header>
@@ -81,5 +96,13 @@ const styles = StyleSheet.create({
   },
   tableCol: {
     width: 25
-  }
+  },
+  back: {
+    height: 25,
+    width: 25,
+  },
+  filter: {
+    flexDirection: "row",
+    justifyContent: "flex-end"
+  },
 });
